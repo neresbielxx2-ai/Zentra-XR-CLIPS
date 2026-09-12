@@ -130,6 +130,8 @@ class RecordingService : Service() {
 
     private var outW = 0
     private var outH = 0
+    private var vdW = 0
+    private var vdH = 0
     private var fps = 30
     private var videoBitrate = 6_000_000
     private var dpi = 320
@@ -732,8 +734,10 @@ class RecordingService : Service() {
                 val scale = target.toFloat() / shortSide.toFloat()
                 val w = max(2, (sw * scale / 2f).roundToInt() * 2)
                 val h = max(2, (sh * scale / 2f).roundToInt() * 2)
-                if (w != vd.width || h != vd.height) {
+                if (w != vdW || h != vdH) {
                     vd.resize(w, h, dpi)
+                    vdW = w
+                    vdH = h
                 }
             } catch (e: Exception) {
                 Log.w(TAG, "resize", e)
