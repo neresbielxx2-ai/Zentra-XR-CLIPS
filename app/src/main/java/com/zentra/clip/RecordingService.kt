@@ -255,6 +255,8 @@ class RecordingService : Service() {
         encoder.start()
         videoEncoder = encoder
 
+        vdW = outW
+        vdH = outH
         virtualDisplay = proj.createVirtualDisplay(
             "ZentraClip", outW, outH, dpi,
             DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
@@ -334,7 +336,7 @@ class RecordingService : Service() {
                             .addMatchingUsage(AudioAttributes.USAGE_GAME)
                             .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
                             .build()
-                        builder.setAudioPlaybackCaptureConfiguration(cfg)
+                        builder.setAudioPlaybackCaptureConfig(cfg)
                     } else {
                         builder.setAudioSource(android.media.MediaRecorder.AudioSource.MIC)
                     }
