@@ -35,7 +35,20 @@ jobs:
       - name: Compilar APKs (release + debug)
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon --stacktrace :app:assembleRelease :app:assembleDebug
+          set -o pipefail
+          ./gradlew --no-daemon --stacktrace :app:assembleRelease :app:assembleDebug 2>&1 | tee /tmp/build.log | tail -250
+
+      - name: Publicar log de erro no repo (para depuração)
+        if: failure() && github.ref_type == 'branch'
+        run: |
+          cp /tmp/build.log build-error.log 2>/dev/null || echo "log indisponivel" > build-error.log
+          tail -400 build-error.log > build-error-tail.log
+          mv build-error-tail.log build-error.log
+          git config user.name "arena-ai-coding-agent"
+          git config user.email "agent@arena.ai"
+          git add build-error.log
+          git commit -m "ci: log de erro de build [skip ci]"
+          git push origin HEAD:${{ github.ref_name }}
 
       - name: Upload dos APKs
         uses: actions/upload-artifact@v4
