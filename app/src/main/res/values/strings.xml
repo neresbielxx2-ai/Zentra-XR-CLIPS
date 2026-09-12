@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zentra Clip</string>
+    <string name="tagline">Clipping instantâneo dos últimos segundos</string>
+    <string name="status_ready">●  Pronto para gravar</string>
+    <string name="select_app_hint">Selecionar aplicativo</string>
+    <string name="select_app_sub">Toque para escolher o app que será gravado</string>
+    <string name="btn_start">INICIAR GRAVAÇÃO</string>
+    <string name="btn_stop">PARAR GRAVAÇÃO</string>
+    <string name="btn_clips">MEUS CLIPS</string>
+    <string name="footer_hint">Gravação em buffer circular • nada é salvo até você tocar no botão</string>
+</resources>

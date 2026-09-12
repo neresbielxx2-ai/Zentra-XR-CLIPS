@@ -1,0 +1,10 @@
+# Gradle/Kotlin
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+.DS_Store
